@@ -6,7 +6,15 @@ class Settings():
         self.screenHeigth = screenHeigth
         self.gridWidth = gridWidth
         self.gridHeight = gridHeight
+
         self.numberCruiser = numberCruiser
         self.numberEscortShip = numberEscortShip
         self.numberTorpedoBoat = numberTorpedoBoat
         self.numberSubmarine = numberSubmarine
+
+        self.numberCruiserDestroyed = 0
+        self.numberEscortShipDestroyed = 0
+        self.numberTorpedoBoatDestroyed = 0
+        self.numberSubmarineDestroyed = 0
+
+        self.numberTurn = 0
