@@ -9,10 +9,13 @@ class Grid():
 
     def initGrid(self):
         cells = []
+        length = min(0.5*self.settings.screenWidth, 0.7*self.settings.screenHeigth)
+        scaleI = length//self.settings.gridHeight
+        scaleJ = length//self.settings.gridWidth
         for i in range(self.settings.gridHeight):
             row = []
             for j in range(self.settings.gridWidth):
-                cell = Cell(pygame.Surface((100, 100)), 100*i+100, 100*j+100)
+                cell = Cell(pygame.Surface((scaleI-1, scaleJ-1)), scaleI*i+0.2*self.settings.screenHeigth, scaleJ*j+0.1*self.settings.screenWidth)
                 row.append(cell)
                 self.group.add(cell)
             cells.append(row)
