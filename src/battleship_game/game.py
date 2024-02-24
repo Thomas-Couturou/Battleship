@@ -1,6 +1,7 @@
 import pygame
 from grid import Grid
 from settings import Settings
+from boat import Boat
 
 pygame.init()
 pygame.display.set_caption("Bataille navale")
@@ -14,6 +15,23 @@ pygame.display.flip()
 title = arial_font.render("Bataille Navale" , True, "black")
 settings = Settings(size[0], size[1], 20, 20)
 grid = Grid(settings)
+
+lstBoat = []
+
+lstBoat.append(Boat(4))
+lstBoat.append(Boat(3))
+lstBoat.append(Boat(3))
+lstBoat.append(Boat(2))
+lstBoat.append(Boat(2))
+lstBoat.append(Boat(2))
+lstBoat.append(Boat(1))
+lstBoat.append(Boat(1))
+lstBoat.append(Boat(1))
+lstBoat.append(Boat(1))
+
+grid.createGridMap(lstBoat)
+
+print(grid.gridMap)
 
 def updateScore(settings):
     arial_font_small = pygame.font.SysFont("arial", 24)
