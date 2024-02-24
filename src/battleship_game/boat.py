@@ -1,5 +1,5 @@
 class Boat():
-    def __init__(self, length, lstPoints):
+    def __init__(self, length, lstPoints = []):
         self.length = length
         self.lstPoints = lstPoints
         self.lstTouched = [False for i in range(length)]
