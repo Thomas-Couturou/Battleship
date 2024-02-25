@@ -11,10 +11,14 @@ screen = pygame.display.set_mode(size, pygame.SCALED)
 screen.fill("white")
 pygame.display.flip()
 
-title = arial_font.render("Bataille Navale" , True, "black")
+
 settings = Settings(size[0], size[1], 10, 10)
 
+
+title = arial_font.render("Bataille Navale" , True, "black")
+solution = arial_font.render("Solution" , True, "black", (200,200,200))
 grid = Grid(settings)
+reveal = False
 
 def updateScore(settings):
     arial_font_small = pygame.font.SysFont("arial", 24)
@@ -49,12 +53,16 @@ while launched:
             launched = False
         elif event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
             launched = False
+        elif event.type == pygame.MOUSEBUTTONUP:
+            if solution.get_rect(topleft = (settings.screenWidth*0.7,settings.screenHeigth * 0.7)).collidepoint(event.pos) :
+                reveal = True
 
-    grid.group.update(events)
+    grid.group.update(events, reveal)
     grid.group.draw(screen)
     message = arial_font.render(settings.message, True, "black")
     screen.blit(message, ((settings.screenWidth - message.get_width()) // 2,settings.screenHeigth * 0.1))
     screen.blit(title, ((settings.screenWidth - title.get_width()) // 2, settings.screenHeigth * 0.05))
+    screen.blit(solution, (settings.screenWidth*0.7,settings.screenHeigth * 0.7))
     updateScore(settings)
     pygame.display.update()
 

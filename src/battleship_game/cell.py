@@ -12,14 +12,18 @@ class Cell(pygame.sprite.Sprite):
         self.isClick = False
         self.point = point
 
-    def update(self, events):
-        for event in events:
-            if event.type == pygame.MOUSEBUTTONUP:
-                if self.rect.collidepoint(event.pos) and not(self.isClick):
-                    self.onClick()
-                    self.isClick = True
-        if self.boat != None and self.boat.isSunk():
-            self.image.fill((255, 0, 0))
+    def update(self, events, reveal):
+        if reveal:
+            self.onReveal()
+        else:
+            for event in events:
+                if event.type == pygame.MOUSEBUTTONUP:
+                    if self.rect.collidepoint(event.pos) and not(self.isClick):
+                        self.onClick()
+                        self.isClick = True
+            if self.boat != None and self.boat.isSunk():
+                self.image.fill((255, 0, 0))
+
 
     def onClick(self):
         self.settings.numberTurn += 1
@@ -36,3 +40,11 @@ class Cell(pygame.sprite.Sprite):
                 self.image.fill((0, 255, 0))
                 self.settings.message = "Touché !"
 
+    def onReveal(self):
+        if self.boat == None:
+            self.image.fill((0, 0, 255))
+        else:
+            if self.boat.isSunk():
+                self.image.fill((255, 0, 0))
+            else:
+                self.image.fill((0, 255, 0))
