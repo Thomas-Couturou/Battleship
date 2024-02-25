@@ -68,12 +68,16 @@ class Game():
                 elif event.type == pygame.MOUSEBUTTONUP:
                     if solution.get_rect(topleft = (self.settings.screenWidth*0.7,self.settings.screenHeigth * 0.7)).collidepoint(event.pos) :
                         reveal = True
+                        self.settings.message = "Voici la solution. Vous avez arrêté après {} tours.".format(self.settings.numberTurn)
                     elif playAgain.get_rect(topleft = (self.settings.screenWidth*0.7,self.settings.screenHeigth * 0.8)).collidepoint(event.pos) :
                         launched = False
                         play = True
                     elif menu.get_rect(topleft = (self.settings.screenWidth*0.05,self.settings.screenHeigth * 0.05)).collidepoint(event.pos) :
                         launched = False
                         settingsMenu = True
+            if self.checkGameEnd():
+                reveal = True
+                self.settings.message = "Fécilitations, vous avez terminé la grille en {} tours.".format(self.settings.numberTurn)
 
             grid.group.update(events, reveal)
             grid.group.draw(self.screen)
@@ -140,3 +144,10 @@ class Game():
             pygame.display.update()
 
         return play, settingsMenu
+
+    def checkGameEnd(self):
+        end = True
+        for boat in self.settings.lstBoat:
+            end = end and boat.isSunk()
+        return end
+
