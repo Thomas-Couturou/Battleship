@@ -81,6 +81,8 @@ class Grid():
     def createGridMap(self):
         random.seed()
 
+        self.gridMap = [[0 for j in range(self.settings.gridWidth)] for i in range(self.settings.gridHeight)]
+
         for boat in self.settings.lstBoat:
             boatPlaced = False
             while not(boatPlaced):

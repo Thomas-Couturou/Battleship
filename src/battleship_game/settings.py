@@ -20,7 +20,7 @@ class Settings():
         self.numberSubmarineDestroyed = 0
 
         self.numberTurn = 0
-        self.lstBoat = self.createLstBoat()
+        self.lstBoat = []
         self.message = ""
 
     def sunkenBoat(self, boat):
@@ -43,4 +43,14 @@ class Settings():
             lstBoat.append(Boat(2))
         for i in range(self.numberSubmarine):
             lstBoat.append(Boat(1))
-        return lstBoat
+        self.lstBoat = lstBoat
+
+    def reset(self):
+        self.numberCruiserDestroyed = 0
+        self.numberEscortShipDestroyed = 0
+        self.numberTorpedoBoatDestroyed = 0
+        self.numberSubmarineDestroyed = 0
+
+        self.numberTurn = 0
+        self.createLstBoat()
+        self.message = ""
