@@ -23,23 +23,23 @@ class Game():
         arial_font_big.set_underline(True)
 
         remainingBoat = arial_font_big.render("Bateaux coulés", True, "black")
-        self.screen.blit(remainingBoat, (self.settings.screenWidth * 0.65, self.settings.screenHeigth * 0.25))
+        self.screen.blit(remainingBoat, (self.settings.screenWidth * 0.65, self.settings.screenHeight * 0.25))
 
         cruiser = arial_font_small.render("Croiseurs : {}/{}".format(self.settings.numberCruiserDestroyed,self.settings.numberCruiser), True, "black")
-        self.screen.blit(cruiser, (self.settings.screenWidth * 0.65, self.settings.screenHeigth * 0.3))
+        self.screen.blit(cruiser, (self.settings.screenWidth * 0.65, self.settings.screenHeight * 0.3))
 
         EscortShip = arial_font_small.render("Escorteurs : {}/{}".format(self.settings.numberEscortShipDestroyed,self.settings.numberEscortShip), True, "black")
-        self.screen.blit(EscortShip, (self.settings.screenWidth * 0.65, self.settings.screenHeigth * 0.35))
+        self.screen.blit(EscortShip, (self.settings.screenWidth * 0.65, self.settings.screenHeight * 0.35))
 
         TorpedoBoat = arial_font_small.render("Torpilleurs : {}/{}".format(self.settings.numberTorpedoBoatDestroyed,self.settings.numberTorpedoBoat), True, "black")
-        self.screen.blit(TorpedoBoat, (self.settings.screenWidth * 0.65, self.settings.screenHeigth * 0.4))
+        self.screen.blit(TorpedoBoat, (self.settings.screenWidth * 0.65, self.settings.screenHeight * 0.4))
 
         Submarine = arial_font_small.render("Sous-marins : {}/{}".format(self.settings.numberSubmarineDestroyed,self.settings.numberSubmarine), True, "black")
-        self.screen.blit(Submarine, (self.settings.screenWidth * 0.65, self.settings.screenHeigth * 0.45))
+        self.screen.blit(Submarine, (self.settings.screenWidth * 0.65, self.settings.screenHeight * 0.45))
 
         arial_font_big.set_underline(False)
         turn = arial_font_big.render("Nombre de tours : {}".format(self.settings.numberTurn), True,"black")
-        self.screen.blit(turn, (self.settings.screenWidth * 0.65, self.settings.screenHeigth * 0.55))
+        self.screen.blit(turn, (self.settings.screenWidth * 0.65, self.settings.screenHeight * 0.55))
 
     def play(self):
         self.settings.reset()
@@ -66,13 +66,13 @@ class Game():
                     launched = False
                     settingsMenu = True
                 elif event.type == pygame.MOUSEBUTTONUP:
-                    if solution.get_rect(topleft = (self.settings.screenWidth*0.7,self.settings.screenHeigth * 0.7)).collidepoint(event.pos) :
+                    if solution.get_rect(topleft = (self.settings.screenWidth*0.7,self.settings.screenHeight * 0.7)).collidepoint(event.pos) :
                         reveal = True
                         self.settings.message = "Voici la solution. Vous avez arrêté après {} tours.".format(self.settings.numberTurn)
-                    elif playAgain.get_rect(topleft = (self.settings.screenWidth*0.7,self.settings.screenHeigth * 0.8)).collidepoint(event.pos) :
+                    elif playAgain.get_rect(topleft = (self.settings.screenWidth*0.7,self.settings.screenHeight * 0.8)).collidepoint(event.pos) :
                         launched = False
                         play = True
-                    elif menu.get_rect(topleft = (self.settings.screenWidth*0.05,self.settings.screenHeigth * 0.05)).collidepoint(event.pos) :
+                    elif menu.get_rect(topleft = (self.settings.screenWidth*0.05,self.settings.screenHeight * 0.05)).collidepoint(event.pos) :
                         launched = False
                         settingsMenu = True
             if self.checkGameEnd():
@@ -82,11 +82,11 @@ class Game():
             grid.group.update(events, reveal)
             grid.group.draw(self.screen)
             message = arial_font.render(self.settings.message, True, "black")
-            self.screen.blit(message, ((self.settings.screenWidth - message.get_width()) // 2,self.settings.screenHeigth * 0.1))
-            self.screen.blit(title, ((self.settings.screenWidth - title.get_width()) // 2, self.settings.screenHeigth * 0.05))
-            self.screen.blit(menu, (self.settings.screenWidth*0.05,self.settings.screenHeigth * 0.05))
-            self.screen.blit(solution, (self.settings.screenWidth*0.7,self.settings.screenHeigth * 0.7))
-            self.screen.blit(playAgain,(self.settings.screenWidth * 0.7, self.settings.screenHeigth * 0.8))
+            self.screen.blit(message, ((self.settings.screenWidth - message.get_width()) // 2,self.settings.screenHeight * 0.1))
+            self.screen.blit(title, ((self.settings.screenWidth - title.get_width()) // 2, self.settings.screenHeight * 0.05))
+            self.screen.blit(menu, (self.settings.screenWidth*0.05,self.settings.screenHeight * 0.05))
+            self.screen.blit(solution, (self.settings.screenWidth*0.7,self.settings.screenHeight * 0.7))
+            self.screen.blit(playAgain,(self.settings.screenWidth * 0.7, self.settings.screenHeight * 0.8))
             self.updateScore()
             pygame.display.update()
 
@@ -102,9 +102,9 @@ class Game():
 
 
         widthChoice = arial_font.render("Largeur", True, "black")
-        gridWidthSlider = Slider(self.screen, self.settings.screenWidth // 4, int(self.settings.screenHeigth * 0.3), self.settings.screenWidth // 2, 40, min=10, max=30, step=1, initial=self.settings.gridWidth)
+        gridWidthSlider = Slider(self.screen, self.settings.screenWidth // 4, int(self.settings.screenHeight * 0.3), self.settings.screenWidth // 2, 40, min=10, max=30, step=1, initial=self.settings.gridWidth)
         heightChoice = arial_font.render("Hauteur", True, "black")
-        gridHeightSlider = Slider(self.screen, self.settings.screenWidth // 4, int(self.settings.screenHeigth * 0.5), self.settings.screenWidth // 2, 40, min=10,max=30, step=1, initial=self.settings.gridHeight)
+        gridHeightSlider = Slider(self.screen, self.settings.screenWidth // 4, int(self.settings.screenHeight * 0.5), self.settings.screenWidth // 2, 40, min=10,max=30, step=1, initial=self.settings.gridHeight)
 
 
         launched = True
@@ -118,9 +118,9 @@ class Game():
                     launched = False
                     play = True
                 elif event.type == pygame.MOUSEBUTTONUP:
-                    if leave.get_rect(topleft = ((self.settings.screenWidth - leave.get_width()) // 2,self.settings.screenHeigth * 0.9)).collidepoint(event.pos) :
+                    if leave.get_rect(topleft = ((self.settings.screenWidth - leave.get_width()) // 2,self.settings.screenHeight * 0.9)).collidepoint(event.pos) :
                         launched = False
-                    if leave.get_rect(topleft = ((self.settings.screenWidth - backGame.get_width()) // 2,self.settings.screenHeigth * 0.8)).collidepoint(event.pos) :
+                    if leave.get_rect(topleft = ((self.settings.screenWidth - backGame.get_width()) // 2,self.settings.screenHeight * 0.8)).collidepoint(event.pos) :
                         launched = False
                         play = True
 
@@ -131,14 +131,14 @@ class Game():
             currentHeight = arial_font.render(str(self.settings.gridHeight), True, "black")
 
 
-            self.screen.blit(widthChoice, ((self.settings.screenWidth - widthChoice.get_width()) // 2,self.settings.screenHeigth * 0.2))
-            self.screen.blit(heightChoice, ((self.settings.screenWidth - heightChoice.get_width()) // 2,self.settings.screenHeigth * 0.4))
-            self.screen.blit(currentWidth, (self.settings.screenWidth*0.8, self.settings.screenHeigth * 0.3))
-            self.screen.blit(currentHeight, (self.settings.screenWidth * 0.8, self.settings.screenHeigth * 0.5))
-            self.screen.blit(title, ((self.settings.screenWidth - title.get_width()) // 2,self.settings.screenHeigth * 0.05))
+            self.screen.blit(widthChoice, ((self.settings.screenWidth - widthChoice.get_width()) // 2,self.settings.screenHeight * 0.2))
+            self.screen.blit(heightChoice, ((self.settings.screenWidth - heightChoice.get_width()) // 2,self.settings.screenHeight * 0.4))
+            self.screen.blit(currentWidth, (self.settings.screenWidth*0.8, self.settings.screenHeight * 0.3))
+            self.screen.blit(currentHeight, (self.settings.screenWidth * 0.8, self.settings.screenHeight * 0.5))
+            self.screen.blit(title, ((self.settings.screenWidth - title.get_width()) // 2,self.settings.screenHeight * 0.05))
 
-            self.screen.blit(backGame, ((self.settings.screenWidth - backGame.get_width()) // 2,self.settings.screenHeigth * 0.8))
-            self.screen.blit(leave, ((self.settings.screenWidth - leave.get_width()) // 2,self.settings.screenHeigth * 0.9))
+            self.screen.blit(backGame, ((self.settings.screenWidth - backGame.get_width()) // 2,self.settings.screenHeight * 0.8))
+            self.screen.blit(leave, ((self.settings.screenWidth - leave.get_width()) // 2,self.settings.screenHeight * 0.9))
 
             pygame_widgets.update(events)
             pygame.display.update()

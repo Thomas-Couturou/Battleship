@@ -1,11 +1,11 @@
 from boat import Boat
 
 class Settings():
-    def __init__(self, screenWidth, screenHeigth, gridWidth=10, gridHeight=10,
+    def __init__(self, screenWidth, screenHeight, gridWidth=10, gridHeight=10,
                  numberCruiser=1, numberEscortShip=2, numberTorpedoBoat=3,
                  numberSubmarine=4):
         self.screenWidth = screenWidth
-        self.screenHeigth = screenHeigth
+        self.screenHeight = screenHeight
         self.gridWidth = gridWidth
         self.gridHeight = gridHeight
 
