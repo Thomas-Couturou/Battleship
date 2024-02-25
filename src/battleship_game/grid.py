@@ -14,14 +14,14 @@ class Grid():
     def initGrid(self):
         cells = []
         maxGrid = max(self.settings.gridWidth,self.settings.gridHeight)
-        length = min(0.5*self.settings.screenWidth//maxGrid, 0.7*self.settings.screenHeigth//maxGrid)
+        length = min(0.5*self.settings.screenWidth//maxGrid, 0.7*self.settings.screenHeight//maxGrid)
         scaleI = length
         scaleJ = length
         for i in range(self.settings.gridHeight):
             row = []
             for j in range(self.settings.gridWidth):
                 boat = self.affectBoatToCell(Point(i,j))
-                cell = Cell(pygame.Surface((scaleI-1, scaleJ-1)), scaleI*i+0.2*self.settings.screenHeigth, scaleJ*j+0.1*self.settings.screenWidth, self.settings, boat, Point(i,j))
+                cell = Cell(pygame.Surface((scaleI-1, scaleJ-1)), scaleI*i+0.2*self.settings.screenHeight, scaleJ*j+0.1*self.settings.screenWidth, self.settings, boat, Point(i,j))
                 row.append(cell)
                 self.group.add(cell)
             cells.append(row)
