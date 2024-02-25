@@ -1,7 +1,6 @@
 import pygame
 from grid import Grid
 from settings import Settings
-from boat import Boat
 
 pygame.init()
 pygame.display.set_caption("Bataille navale")
@@ -13,25 +12,9 @@ screen.fill("white")
 pygame.display.flip()
 
 title = arial_font.render("Bataille Navale" , True, "black")
-settings = Settings(size[0], size[1], 20, 20)
+settings = Settings(size[0], size[1], 10, 10)
+
 grid = Grid(settings)
-
-lstBoat = []
-
-lstBoat.append(Boat(4))
-lstBoat.append(Boat(3))
-lstBoat.append(Boat(3))
-lstBoat.append(Boat(2))
-lstBoat.append(Boat(2))
-lstBoat.append(Boat(2))
-lstBoat.append(Boat(1))
-lstBoat.append(Boat(1))
-lstBoat.append(Boat(1))
-lstBoat.append(Boat(1))
-
-grid.createGridMap(lstBoat)
-
-print(grid.gridMap)
 
 def updateScore(settings):
     arial_font_small = pygame.font.SysFont("arial", 24)
@@ -57,9 +40,9 @@ def updateScore(settings):
     turn = arial_font_big.render("Nombre de tours : {}".format(settings.numberTurn), True,"black")
     screen.blit(turn, (settings.screenWidth * 0.65, settings.screenHeigth * 0.55))
 
-
 launched = True
 while launched:
+    screen.fill((255, 255, 255))
     events = pygame.event.get()
     for event in events:
         if event.type == pygame.QUIT:
@@ -68,8 +51,9 @@ while launched:
             launched = False
 
     grid.group.update(events)
-    screen.fill((255, 255, 255))
     grid.group.draw(screen)
+    message = arial_font.render(settings.message, True, "black")
+    screen.blit(message, ((settings.screenWidth - message.get_width()) // 2,settings.screenHeigth * 0.1))
     screen.blit(title, ((settings.screenWidth - title.get_width()) // 2, settings.screenHeigth * 0.05))
     updateScore(settings)
     pygame.display.update()
