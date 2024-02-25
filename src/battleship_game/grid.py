@@ -13,9 +13,10 @@ class Grid():
 
     def initGrid(self):
         cells = []
-        length = min(0.5*self.settings.screenWidth, 0.7*self.settings.screenHeigth)
-        scaleI = length//self.settings.gridHeight
-        scaleJ = length//self.settings.gridWidth
+        maxGrid = max(self.settings.gridWidth,self.settings.gridHeight)
+        length = min(0.5*self.settings.screenWidth//maxGrid, 0.7*self.settings.screenHeigth//maxGrid)
+        scaleI = length
+        scaleJ = length
         for i in range(self.settings.gridHeight):
             row = []
             for j in range(self.settings.gridWidth):
