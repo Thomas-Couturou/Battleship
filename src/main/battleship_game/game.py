@@ -1,8 +1,8 @@
 import pygame
 import pygame_widgets
 from pygame_widgets.slider import Slider
-from grid import Grid
-from settings import Settings
+from .grid import Grid
+from .settings import Settings
 
 
 class Game():

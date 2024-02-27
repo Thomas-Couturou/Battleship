@@ -1,7 +1,7 @@
-from cell import Cell
+from .cell import Cell
 import pygame
 import random
-from point import Point
+from .point import Point
 
 class Grid():
     def __init__(self,settings):
@@ -64,13 +64,13 @@ class Grid():
     def getRandomDirection(self, row, col, boat):
         possibleDirection = []
 
-        if col - boat.length >= 0:
+        if col - boat.length + 1 >= 0:
             possibleDirection.append("left")
-        if col + boat.length < self.settings.gridWidth:
+        if col + boat.length - 1 < self.settings.gridWidth:
             possibleDirection.append("right")
-        if row - boat.length >= 0:
+        if row - boat.length + 1 >= 0:
             possibleDirection.append("up")
-        if row + boat.length < self.settings.gridHeight:
+        if row + boat.length - 1 < self.settings.gridHeight:
             possibleDirection.append("down")
 
         if possibleDirection == []:

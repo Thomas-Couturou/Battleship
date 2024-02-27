@@ -1,4 +1,4 @@
-from boat import Boat
+from .boat import Boat
 
 class Settings():
     def __init__(self, screenWidth, screenHeight, gridWidth=10, gridHeight=10,

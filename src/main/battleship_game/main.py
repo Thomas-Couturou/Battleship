@@ -1,5 +1,5 @@
 import pygame
-from game import Game
+from src.main.battleship_game.game import Game
 
 game = Game()
 playAgain = True
