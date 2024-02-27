@@ -17,10 +17,13 @@ class Cell(pygame.sprite.Sprite):
             self.onReveal()
         else:
             for event in events:
+                # Checks if the cell is clicked
                 if event.type == pygame.MOUSEBUTTONUP:
                     if self.rect.collidepoint(event.pos) and not(self.isClick):
                         self.onClick()
                         self.isClick = True
+
+            # Update sunken boats
             if self.boat != None and self.boat.isSunk():
                 self.image.fill((255, 0, 0))
 

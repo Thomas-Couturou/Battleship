@@ -14,7 +14,7 @@ class Grid():
     def initGrid(self):
         cells = []
         maxGrid = max(self.settings.gridWidth,self.settings.gridHeight)
-        length = min(0.5*self.settings.screenWidth//maxGrid, 0.7*self.settings.screenHeight//maxGrid)
+        length = min(0.5*self.settings.screenWidth//maxGrid, 0.7*self.settings.screenHeight//maxGrid) # Compute cell size
         scaleI = length
         scaleJ = length
         for i in range(self.settings.gridHeight):
@@ -35,11 +35,13 @@ class Grid():
                     validPlace = False
 
         if validPlace:
+            # Marks inaccessible cells
             for i in range(startRow-1, endRow+1):
                 for j in range(startCol-1, endCol+1):
                     if 0 <= i < self.settings.gridHeight and 0 <= j < self.settings.gridWidth:
                         self.gridMap[i][j] = 1
 
+            # Marks boat cells
             for i in range(startRow, endRow):
                 for j in range(startCol, endCol):
                     self.gridMap[i][j] = 2

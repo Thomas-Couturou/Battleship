@@ -44,9 +44,10 @@ class Game():
         self.settings.reset()
         arial_font = pygame.font.SysFont("arial", 36)
         title = arial_font.render("Bataille Navale", True, "black")
+
+        #Create buttons
         solution = arial_font.render("Solution", True, "black", (200, 200, 200))
         playAgain = arial_font.render("Rejouer", True, "black", (200, 200, 200))
-
         menu = arial_font.render("Options", True, "black", (200, 200, 200))
 
         grid = Grid(self.settings)
@@ -78,14 +79,20 @@ class Game():
                 reveal = True
                 self.settings.message = "Fécilitations, vous avez terminé la grille en {} tours.".format(self.settings.numberTurn)
 
+            # Update cells
             grid.group.update(events, reveal)
             grid.group.draw(self.screen)
             message = arial_font.render(self.settings.message, True, "black")
+
+            # Display texts
             self.screen.blit(message, ((self.settings.screenWidth - message.get_width()) // 2, self.settings.screenHeight * 0.1))
             self.screen.blit(title, ((self.settings.screenWidth - title.get_width()) // 2, self.settings.screenHeight * 0.05))
+
+            # Display buttons
             self.screen.blit(menu, (self.settings.screenWidth*0.05, self.settings.screenHeight * 0.05))
             self.screen.blit(solution, (self.settings.screenWidth*0.7, self.settings.screenHeight * 0.7))
             self.screen.blit(playAgain, (self.settings.screenWidth * 0.7, self.settings.screenHeight * 0.8))
+
             self.updateScore()
             pygame.display.update()
 
@@ -96,9 +103,12 @@ class Game():
         play = False
         settingsMenu = False
         title = arial_font.render("Bataille Navale", True, "black")
+
+        # Create buttons
         leave = arial_font.render("Quitter le jeu", True, "black", (200, 200, 200))
         backGame = arial_font.render("Retour", True, "black", (200, 200, 200))
 
+        # Create sliders
         widthChoice = arial_font.render("Largeur", True, "black")
         gridWidthSlider = Slider(self.screen, self.settings.screenWidth // 4, int(self.settings.screenHeight * 0.3), self.settings.screenWidth // 2, 40, min=10, max=30, step=1, initial=self.settings.gridWidth)
         heightChoice = arial_font.render("Hauteur", True, "black")
@@ -121,18 +131,23 @@ class Game():
                         launched = False
                         play = True
 
+            # Get sliders values
             self.settings.gridWidth = gridWidthSlider.getValue()
             self.settings.gridHeight = gridHeightSlider.getValue()
 
             currentWidth = arial_font.render(str(self.settings.gridWidth), True, "black")
             currentHeight = arial_font.render(str(self.settings.gridHeight), True, "black")
 
+            # Display texts
+            self.screen.blit(title, ((self.settings.screenWidth - title.get_width()) // 2, self.settings.screenHeight * 0.05))
             self.screen.blit(widthChoice, ((self.settings.screenWidth - widthChoice.get_width()) // 2, self.settings.screenHeight * 0.2))
             self.screen.blit(heightChoice, ((self.settings.screenWidth - heightChoice.get_width()) // 2, self.settings.screenHeight * 0.4))
+
+            # Display current width and height
             self.screen.blit(currentWidth, (self.settings.screenWidth*0.8, self.settings.screenHeight * 0.3))
             self.screen.blit(currentHeight, (self.settings.screenWidth * 0.8, self.settings.screenHeight * 0.5))
-            self.screen.blit(title, ((self.settings.screenWidth - title.get_width()) // 2, self.settings.screenHeight * 0.05))
 
+            # Display buttons
             self.screen.blit(backGame, ((self.settings.screenWidth - backGame.get_width()) // 2, self.settings.screenHeight * 0.8))
             self.screen.blit(leave, ((self.settings.screenWidth - leave.get_width()) // 2, self.settings.screenHeight * 0.9))
 
