@@ -77,7 +77,7 @@ class Game():
                         settingsMenu = True
             if self.checkGameEnd():
                 reveal = True
-                self.settings.message = "Fécilitations, vous avez terminé la grille en {} tours.".format(self.settings.numberTurn)
+                self.settings.message = "Félicitations, vous avez terminé la grille en {} tours.".format(self.settings.numberTurn)
 
             # Update cells
             grid.group.update(events, reveal)
